@@ -5,19 +5,26 @@ Command: npx gltfjsx@6.2.4 public/models/649aa5a88c331a0f767fcfa0.glb
 
 import React, { useEffect, useRef } from 'react'
 import { useGLTF, useFBX, useAnimations } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
 
 export function Avatar(props) {
   const group = useRef()
   const { nodes, materials } = useGLTF('models/649aa5a88c331a0f767fcfa0.glb')
 
   const {animations: dancingAnimation } = useFBX("animations/Dancing.fbx")
+  const {animations: standingAnimation } = useFBX("animations/Standing.fbx")
 
   dancingAnimation[0].name = "Dancing"
+  standingAnimation[0].name = "Standing"
 
-  const { actions } = useAnimations(dancingAnimation, group)
+  const { actions } = useAnimations(standingAnimation, group)
+
+//   useFrame((state) => {
+//     group.current.getObjectByName("Neck").lookAt(state.camera.position)
+//   })
 
   useEffect(() => {
-    actions["Dancing"].reset().play()
+    actions["Standing"].reset().play()
   }, [])
 
   return (
