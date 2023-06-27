@@ -1,5 +1,6 @@
 import { ContactShadows, Environment, OrbitControls, Sky } from "@react-three/drei";
 import { Avatar } from "./Avatar";
+import { Avatar2 } from "./Avatar2";
 import { PlaneGeometry } from "three";
 
 export const Experience = () => {
@@ -18,7 +19,8 @@ export const Experience = () => {
           resolution={256}
           color="#000000"
         />
-        <Avatar />
+        <Avatar position-x={1}/>
+        <Avatar2 position-x={-1}/>
       <mesh scale={5} rotation-x={-Math.PI * 0.5} position-y={-0.001}>
         <planeGeometry />
         <meshStandardMaterial color="white" />

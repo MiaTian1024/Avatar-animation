@@ -7,9 +7,9 @@ import React, { useEffect, useRef } from 'react'
 import { useGLTF, useFBX, useAnimations } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 
-export function Avatar(props) {
+export function Avatar2(props) {
   const group = useRef()
-  const { nodes, materials } = useGLTF('models/649ac0f28c331a0f767ffabe.glb')
+  const { nodes, materials } = useGLTF('models/649aa5a88c331a0f767fcfa0.glb')
 
   const {animations: dancingAnimation } = useFBX("animations/Dancing.fbx")
   const {animations: standingAnimation } = useFBX("animations/Standing.fbx")
@@ -17,14 +17,14 @@ export function Avatar(props) {
   dancingAnimation[0].name = "Dancing"
   standingAnimation[0].name = "Standing"
 
-  const { actions } = useAnimations(standingAnimation, group)
+  const { actions } = useAnimations(dancingAnimation, group)
 
 //   useFrame((state) => {
 //     group.current.getObjectByName("Neck").lookAt(state.camera.position)
 //   })
 
   useEffect(() => {
-    actions["Standing"].reset().play()
+    actions["Dancing"].reset().play()
   }, [])
 
   return (
@@ -45,4 +45,4 @@ export function Avatar(props) {
   )
 }
 
-useGLTF.preload('models/649ac0f28c331a0f767ffabe.glb')
+useGLTF.preload('models/649aa5a88c331a0f767fcfa0.glb')
